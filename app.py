@@ -1,10 +1,5 @@
-import os
 import openai
-from dotenv import load_dotenv
-from colorama import Fore, Back, Style
 from flask import Flask, request, render_template, session
-from datetime import timedelta
-
 
 app = Flask(__name__)
 load_dotenv()
