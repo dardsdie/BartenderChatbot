@@ -5,7 +5,7 @@ app = Flask(__name__)
 load_dotenv()
 
 app.secret_key = 'topsecret'
-openai.api_key = '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'
+openai.api_key = ''
 
 INSTRUCTIONS = """
     You are an AI assistant that is an expert in alcoholic beverages
