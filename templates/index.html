@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arthur, the AI bartender</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="animated-text" style='text-align: center; font-size: 3em; text-shadow: 1px 1px 2px #333;'>Arthur is waiting for your questions!</h1>
+        <img class='my-image' src="{{ url_for('static', filename='a.jpeg') }}" alt="My Image">
+    </div>
+    
+    <div id='chat-container'>
+        {% for message in messages %}
+            {% if message['from'] == 'user' %}
+                <div class="message user-message">
+                    <p>{{ message['text'] }}</p>
+                </div>
+            {% else %}
+                <div class="message ai-message">
+                    <p>{{ message['text'] }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <form method="POST">
+        <input type="text" name="message" placeholder="Ask me a question...">
+        <input type="submit" value="Ask">
+    </form>
+    <!--
+
+    <script>
+        const form = document.getElementById('chat-form');
+        const container = document.getElementById('chat-container');
+        
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const input = form.elements['message'].value;
+            const userText = document.createElement('p');
+            userText.classList.add('user-message');
+            userText.innerText = input;
+            container.appendChild(userText);
+            form.reset();
+            
+            fetch('/chat', {
+                method: 'POST',
+                body: JSON.stringify({message: input}),
+                headers: {'Content-Type': 'application/json'}
+            })
+            .then(response => response.json())
+            .then(data => {
+                const aiText = document.createElement('p');
+                aiText.classList.add('ai-message');
+                aiText.innerText = data.response;
+                container.appendChild(aiText);
+                container.scrollTop = container.scrollHeight;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script> -->
+</body>
+</html>
